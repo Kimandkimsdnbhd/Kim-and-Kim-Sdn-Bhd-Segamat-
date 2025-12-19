@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title data-i18n="title">Supplies - Kim and Kim Sdn Bhd</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <script src="lang.js"></script>
+  <style>
+    :root {
+      --bg-main: #faf7e6;
+      --card-bg: #ffffff;
+      --accent: #e53935;
+      --accent-dark: #b71c1c;
+      --text-main: #222222;
+      --muted: #757575;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+    body { background: radial-gradient(circle at top left, #fff9c4 0, #faf7e6 45%, #f3e9c4 100%); color: var(--text-main); }
+    header { position: sticky; top: 0; z-index: 50; background: rgba(255, 248, 209, 0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .nav-wrap { max-width: 1100px; margin: 0 auto; padding: 0.8rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand-title { font-weight: 800; letter-spacing: 0.08em; font-size: 1.1rem; text-transform: uppercase; color: var(--accent-dark); }
+    .brand-title[data-i18n="title"] { font-size: 1.1rem; } /* Keep size when translated */
+    nav a { margin-left: 0.8rem; text-decoration: none; color: var(--accent-dark); font-weight: 600; font-size: 0.95rem; padding: 0.4rem 0.9rem; border-radius: 999px; border: 1px solid transparent; transition: 0.2s; }
+    nav a:hover { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+    .main { max-width: 1100px; margin: 2rem auto 3rem; padding: 0 1.5rem; }
+    .back-link { display: inline-block; margin-bottom: 1.5rem; padding: 0.6rem 1.2rem; border-radius: 999px; background: var(--card-bg); color: var(--accent-dark); text-decoration: none; font-size: 0.9rem; border: 1px solid rgba(0,0,0,0.08); }
+    .back-link:hover { background: var(--accent); color: white; }
+    .hero-card { background: var(--card-bg); border-radius: 18px; padding: 2rem; box-shadow: 0 14px 40px rgba(0,0,0,0.1); border: 1px solid rgba(229,57,53,0.12); margin-bottom: 2rem; }
+    .hero-title { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 800; color: var(--accent-dark); margin-bottom: 0.6rem; }
+    .hero-sub { font-size: 1rem; color: #555; }
+    .search-row { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .search-row input { flex: 1; min-width: 220px; padding: 0.8rem 1rem; border-radius: 999px; border: 1px solid rgba(0,0,0,0.18); font-size: 0.95rem; }
+    .search-row button { padding: 0.8rem 1.4rem; border-radius: 999px; border: none; background: var(--accent); color: white; font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+    .search-row button:hover { background: var(--accent-dark); }
+    .product-grid { margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.3rem; }
+    .product-card { background: var(--card-bg); border-radius: 16px; padding: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; }
+    .product-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 12px; margin-bottom: 0.7rem; }
+    .product-cat { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+    .product-name { font-weight: 700; color: var(--accent-dark); margin: 0.25rem 0; font-size: 1rem; }
+    .product-desc { font-size: 0.9rem; color: #555; }
+    footer { text-align: center; padding: 2rem 1rem; font-size: 0.85rem; color: var(--muted); background: rgba(255,255,255,0.85); margin-top: 2.5rem; }
+    @media (max-width: 600px) { .search-row { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <div class="brand-title" data-i18n="title">KIM & KIM SDN BHD</div>
+      <nav>
+        <a href="index.html" data-i18n="home">Home</a>
+        <a href="about.html" data-i18n="about">About</a>
+        <a href="supplies.html" data-i18n="supplies">Supplies</a>
+        <a href="services.html" data-i18n="services">Services</a>
+        <a href="reviews.html" data-i18n="reviews">Reviews</a>
+        <a href="contact.html" data-i18n="contact">Contact</a>
+        <a href="trading-hours.html" data-i18n="hours">Trading Hours</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <a href="index.html" class="back-link" data-i18n="backLink">← Back to main page</a>
+
+    <section class="hero-card">
+      <h1 class="hero-title" data-i18n="suppliesHeroTitle">Hardware Supplies</h1>
+      <p class="hero-sub" data-i18n="suppliesHeroSub">
+        Search by category such as <strong>paint</strong>, <strong>power tools</strong>, <strong>plumbing</strong>, <strong>electrical</strong>, <strong>safety</strong> or <strong>machinery</strong>.
+      </p>
+
+      <div class="search-row">
+        <input id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="Search products, e.g. paint, drill, PVC, cable..." />
+        <button onclick="filterProducts()" data-i18n="searchBtn">Search</button>
+        <button onclick="clearSearch()" data-i18n="clearBtn">Clear</button>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <article class="product-card" data-tags="paint interior">
+          <img src="https://via.placeholder.com/400x250/e53935/fff8d1?text=Interior+Paint" alt="Interior Paint" />
+          <div class="product-cat">Paint</div>
+          <div class="product-name" data-i18n="paintInterior">Interior Wall Paint</div>
+          <div class="product-desc" data-i18n="paintInteriorDesc">Smooth finish, easy to clean, multiple colours for indoor walls.</div>
+        </article>
+
+        <article class="product-card" data-tags="paint exterior weatherproof">
+          <img src="https://via.placeholder.com/400x250/e53935/fff8d1?text=Exterior+Paint" alt="Exterior Paint" />
+          <div class="product-cat">Paint</div>
+          <div class="product-name" data-i18n="paintExterior">Exterior Weather Guard</div>
+          <div class="product-desc" data-i18n="paintExteriorDesc">Weather-resistant coating for outside walls and facades.</div>
+        </article>
+
+        <article class="product-card" data-tags="power tools drill">
+          <img src="https://via.placeholder.com/400x250/e53935/fff8d1?text=Cordless+Drill" alt="Cordless Drill" />
+          <div class="product-cat">Power tools</div>
+          <div class="product-name" data-i18n="drill">Cordless Drill Driver</div>
+          <div class="product-desc" data-i18n="drillDesc">18V drill with battery, suitable for site and workshop use.</div>
+        </article>
+
+        <article class="product-card" data-tags="power tools grinder">
+          <img src="https://via.placeholder.com/400x250/e53935/fff8d1?text=Angle+Grinder" alt="Angle Grinder" />
+          <div class="product-cat">Power tools</div>
+          <div class="product-name" data-i18n="grinder">Angle Grinder</div>
+          <div class="product-desc" data-i18n="grinderDesc">For cutting and grinding metal, concrete and masonry.</div>
+        </article>
+
+        <article class="product-card" data-tags="plumbing pvc pipe fittings">
+          <img src="https://via.placeholder.com/400x250/e53935/fff8d1?text=PVC+Pipes" alt="PVC Pipes" />
+          <div class="product-cat">Plumbing</div>
+          <div class="product-name" data-i18n="pvc">PVC Pipes & Fittings</div>
+          <div class="product-desc" data-i18n="pvcDesc">Range of pipes, elbows, tees and couplings for water lines.</div>
+        </article>
+
+        <article class="product-card" data-tags="electrical cable switches sockets">
+          <img src="https://via.placeholder.com/400x250/e53935/fff8d1?text=Electrical" alt="Electrical" />
+          <div class="product-cat">Electrical</div>
+          <div class="product-name" data-i18n="electrical">Cables, Switches & Sockets</div>
+          <div class="product-desc" data-i18n="electricalDesc">Essential wiring accessories for residential and light industrial jobs.</div>
+        </article>
+
+        <article class="product-card" data-tags="safety ppe helmet gloves">
+          <img src="https://via.placeholder.com/400x250/e53935/fff8d1?text=Safety+Gear" alt="Safety Gear" />
+          <div class="product-cat">Safety</div>
+          <div class="product-name" data-i18n="safety">Safety Helmets & Gloves</div>
+          <div class="product-desc" data-i18n="safetyDesc">PPE to keep crews safe on site: head, hand and basic body protection.</div>
+        </article>
+
+        <article class="product-card" data-tags="machinery concrete mixer">
+          <img src="https://via.placeholder.com/400x250/e53935/fff8d1?text=Concrete+Mixer" alt="Concrete Mixer" />
+          <div class="product-cat">Machinery</div>
+          <div class="product-name" data-i18n="mixer">Concrete Mixer</div>
+          <div class="product-desc" data-i18n="mixerDesc">Compact mixer for small to medium construction pours.</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer data-i18n="footer">
+    © 2025 Kim and Kim Sdn Bhd 
+  </footer>
+
+  <script>
+    function filterProducts() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+        const name = card.querySelector('.product-name').textContent.toLowerCase();
+        card.style.display = (!q || tags.includes(q) || name.includes(q)) ? 'flex' : 'none';
+      });
+    }
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      filterProducts();
+    }
+  </script>
+</body>
+</html>
+ 
